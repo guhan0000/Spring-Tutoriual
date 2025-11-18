@@ -6,13 +6,16 @@ import org.springframework.stereotype.Component;
 @Component
 @ComponentScan(basePackages = "com.college")
 public class CollegeManagement {
-
-	@Autowired
 	EceDept eceDept;
-	@Autowired
 	CseDept cseDept;
-	@Autowired
 	Mech_Dept mech_Dept;
+	@Autowired
+	public CollegeManagement(EceDept ece,CseDept cse,Mech_Dept mech)
+	{
+		eceDept=ece;
+		cseDept=cse;
+		mech_Dept=mech;
+	}
 	
 	void display()
 	{
