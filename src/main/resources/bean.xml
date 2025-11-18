@@ -7,17 +7,8 @@
 		http://www.springframework.org/schema/context
 		https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:annotation-config/>
-
-	<bean id="laptop" class="com.dependencyinjection.Laptop">
-		<!-- collaborators and configuration for this bean go here -->
-	
-		
-		
-	</bean>
-	<bean id="mobile" class="com.dependencyinjection.Mobile"></bean>
-	
-
+	<!--<context:annotation-config/>-->
+	<context:component-scan base-package="com.dependencyinjection"/>
 	
 
 </beans>
