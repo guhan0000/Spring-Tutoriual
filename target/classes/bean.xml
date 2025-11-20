@@ -7,20 +7,24 @@
 		http://www.springframework.org/schema/context
 		https://www.springframework.org/schema/context/spring-context.xsd">
 
+	<bean id="controller" class="org.database.Controller">
 	
+	</bean>
 	<bean id="employees" class="org.database.Employees">
 	<property name="dataSource" ref="dataSource"/>
 	
 	
 	</bean>
 	<bean id="dataSource" class=" org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        
+	
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>	    
         <property name="url" value="jdbc:mysql://localhost:3306/company"/>
         <property name="username" value="root"/>
         <property name="password" value="guhan69"/>
 	</bean>
-	<!--<bean id="scanner" class="java.util.Scanner">-->
+	<bean id="scanner" class="java.util.Scanner">
+	<constructor-arg value="#{T(java.lang.System).in}"/>
+	</bean>
 	
 
 
