@@ -15,12 +15,16 @@ public class Employees {
 	
 	
 	DataSource dataSource;
+	Connection connection;
+	
 //	DriverManagerDataSource
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 		
 		
 	}
+	
+	
 		 void setEmpData(int empId,String empName,int empAge,String empDept) throws SQLException {
 			String sql="INSERT INTO employees (id,name,age,department) VALUES (?,?,?,?)";
 			Connection connection = dataSource.getConnection();
@@ -30,7 +34,32 @@ public class Employees {
 			statement.setInt(3, empAge);
 			statement.setString(4, empDept);
 			int executeUpdate = statement.executeUpdate();
+			if(executeUpdate==1){
+				System.out.println("employee created successfully");
+			}
+			else {
+				System.out.println("employee not created");
+			}
 		}
+		 double getSalary(int EmpId) throws SQLException
+		 {
+			 String sql="SELECT salary from employees WHERE id = ?";
+			 Connection connection=dataSource.getConnection();
+			 PreparedStatement statement = connection.prepareStatement(sql);
+			 statement.setInt(1, EmpId);
+			 ResultSet resultSet = statement.executeQuery();	
+			 if(resultSet.next())
+			 {
+				 double empSalary = resultSet.getDouble("salary");
+				 return empSalary;
+			 }
+			 return 0.0;
+			 
+			 
+			 
+			 
+			 
+		 }
 	
 		
 		void getEmpData() throws SQLException {
@@ -48,7 +77,39 @@ public class Employees {
 			
 			
 		}
-
+		void removeEmp(int empId) throws SQLException{
+			String sql="DELETE FROM employees WHERE id=?";
+			connection=dataSource.getConnection();
+			PreparedStatement statement=connection.prepareStatement(sql);
+			statement.setInt(1, empId);
+			int executeUpdate = statement.executeUpdate();
+			if(executeUpdate==1)
+			{
+				System.out.println(executeUpdate+ "employee deleted successfully");
+			}
+			else {
+				System.out.println(executeUpdate+"Employee not deleted");
+			}
+			
+		}
+		void updateSalary(int empId,double empIncrement) throws SQLException {
+			
+			String sql="UPDATE employees SET salary=? WHERE id=?";
+			connection=dataSource.getConnection();
+			PreparedStatement statement=connection.prepareStatement(sql);
+			
+			statement.setDouble(1, empIncrement+getSalary(empId));
+			statement.setInt(2, empId);
+			int executeUpdate = statement.executeUpdate();
+			if(executeUpdate==1){
+				System.out.println("increment added");
+			}
+			else {
+				System.out.println("increment not updated");
+			}
+			
+			
+		}
 
 		
 
