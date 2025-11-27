@@ -16,10 +16,18 @@ public class Student {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	private int update;
+	private List<Map<String, Object>> queryForList;
 	
 	public List<Map<String,Object>> getStudentData(){
 		return jdbcTemplate.queryForList("SELECT * FROM students");
 		
+	}
+	 void getStudentEmail() {
+		// TODO Auto-generated method stub
+		
+		queryForList = jdbcTemplate.queryForList("SELECT email FROM students WHERE email IS NOT NULL");
+		System.out.println(queryForList);
+
 	}
 	 String insertStudentData(int sId,String sName,int sAge) {
 		Object arr[]= {sId,sName,sAge};
