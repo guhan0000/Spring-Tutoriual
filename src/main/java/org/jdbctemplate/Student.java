@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 public class Student {
@@ -55,8 +56,7 @@ public class Student {
 		 }
 		 
 	 }
-	 String updateStudentEmail(String sEmail,int sId)
-	 {
+	 String updateStudentEmail(String sEmail,int sId) {
 		 Object arr[]= {sEmail,sId};
 		 int emailUpdate = jdbcTemplate.update("UPDATE students SET email=? WHERE student_id=?",arr);
 		 if(emailUpdate==1)
@@ -67,6 +67,28 @@ public class Student {
 			return "Email not Updated";
 		}
 	 
+	 }
+	 String getStudentByDept(int sId)
+	 {
+		 if(sId<=11 && sId>0){
+			 String sql="SELECT department from students WHERE student_id = ?";
+			 String studentDeptString = jdbcTemplate.queryForObject(sql, String.class,sId);
+			 
+//			 System.out.println(studentDeptString);
+			 if(studentDeptString!=null)
+			 {
+				 return studentDeptString; 
+			 }
+			 else {
+				 return "Not Found";
+			 }
+		 }
+		 else {
+			return "Student Not Found";
+		}
+		
+		 
+		 
 	 }
 	  
 	
