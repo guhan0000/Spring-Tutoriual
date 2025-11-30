@@ -3,10 +3,13 @@ import java.util.*;
 import java.sql.*;
 public class JdbcConnection {
 	
-	Products products;
+	static Products products;
+	static {
+		products=new Products();
+	}
 	
-	public  List getData() throws ClassNotFoundException, SQLException {
-		List<Products> list=new ArrayList<>();
+	public static  List<Products> getData() throws ClassNotFoundException, SQLException {
+		List list=new ArrayList<>();
 //		Set set=new LinkedHashSet<>();
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/company","root","guhan69");

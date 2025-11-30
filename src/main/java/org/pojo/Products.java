@@ -7,6 +7,9 @@ public class Products {
 	private String price;
 	private String stock;
 	
+	public Products() {
+		
+	}
 	public Products(String productId, String productName, String category, String price, String stock) {
 		
 		this.productId = productId;

@@ -18,10 +18,10 @@ public class Controller {
 //		{
 //			System.out.println(student);
 //		}
-//		System.out.println(studentData);
-		System.out.println("enter sid");
-		int sId=scanner.nextInt();
-		System.out.println(bean.getStudentByDept(sId));
+		System.out.println(studentData);
+//		System.out.println("enter sid");
+//		int sId=scanner.nextInt();
+//		System.out.println(bean.getStudentByDept(sId));
 //		bean.getStudentEmail();
 		
 		

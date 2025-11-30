@@ -20,6 +20,8 @@ public class Student {
 	private List<Map<String, Object>> queryForList;
 	
 	public List<Map<String,Object>> getStudentData(){
+		List<Map<String, Object>> queryForList2 = jdbcTemplate.queryForList("SELECT student_id FROM students");
+		System.out.println(queryForList2);
 		return jdbcTemplate.queryForList("SELECT * FROM students");
 		
 	}
